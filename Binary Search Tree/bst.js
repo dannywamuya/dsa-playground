@@ -91,8 +91,25 @@ function search(root, data) {
   else return search(root.left, data);
 }
 
+/**
+ * Height of a tree (number of edges in the longest path from the root node to a leaf node).
+ *
+ * O(n) - n recursive calls are made for each node
+ *
+ * @param {TreeNode} root
+ * @returns {number}
+ */
+function height(root) {
+  if (root === null) return 0;
+  leftH = height(root.left);
+  right = height(root.right);
+
+  return Math.max(leftH, right) + 1;
+}
+
 console.log(tree);
 console.log(findMin(tree));
 console.log(findMax(tree));
 console.log(search(tree, 42));
 console.log(search(tree, -1));
+console.log(height(tree));
