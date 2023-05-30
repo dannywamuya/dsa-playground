@@ -123,6 +123,10 @@ function height(root) {
 /**
  * Implementation of level-order traversal
  *
+ * Time - O(n)
+ * Space - O(1) -> Best Case
+ *         O(n) -> Worst/Avg (Perfect Binary Tree)
+ *
  * @param {TreeNode} root
  */
 function bfs(root) {
