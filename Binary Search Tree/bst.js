@@ -107,9 +107,42 @@ function height(root) {
   return Math.max(leftH, right) + 1;
 }
 
+/**
+ * Tree Traversal
+ *
+ * BFS - Visit all the child nodes of a node before visiting the grand children
+ *     - Level order traversal
+ *
+ * DFS - Visit all the whole subtree of a child before visiting the sibling node
+ *     - <root><left><right> - Pre-Order Traversal
+ *     - <left><root><right> - In-Order Traversal
+ *     - <left><right><root> - Post-Order Traversal
+ *
+ */
+
+/**
+ * Implementation of level-order traversal
+ *
+ * @param {TreeNode} root
+ */
+function bfs(root) {
+  if (root === null) return;
+  let queue = [];
+  queue.push(root);
+
+  while (queue.length !== 0) {
+    let curr = queue[0];
+    console.log(curr.val);
+    if (curr.left !== null) queue.push(curr.left);
+    if (curr.right !== null) queue.push(curr.right);
+    queue.shift();
+  }
+}
+
 console.log(tree);
-console.log(findMin(tree));
-console.log(findMax(tree));
-console.log(search(tree, 42));
-console.log(search(tree, -1));
-console.log(height(tree));
+// console.log(findMin(tree));
+// console.log(findMax(tree));
+// console.log(search(tree, 42));
+// console.log(search(tree, -1));
+// console.log(height(tree));
+bfs(tree);
