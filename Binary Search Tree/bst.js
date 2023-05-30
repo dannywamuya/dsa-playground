@@ -143,10 +143,30 @@ function bfs(root) {
   }
 }
 
+/**
+ * DFS
+ *
+ */
+
+/**
+ * Pre-Order
+ *
+ * @param {TreeNode} root
+ */
+
+function preOrder(root) {
+  if (root === null) return;
+  let right = root.right;
+  console.log(root.val);
+  preOrder(root.left);
+  preOrder(right);
+}
+
 console.log(tree);
 // console.log(findMin(tree));
 // console.log(findMax(tree));
 // console.log(search(tree, 42));
 // console.log(search(tree, -1));
 // console.log(height(tree));
-bfs(tree);
+// bfs(tree);
+preOrder(tree);
