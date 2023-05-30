@@ -118,6 +118,14 @@ function height(root) {
  *     - <left><root><right> - In-Order Traversal
  *     - <left><right><root> - Post-Order Traversal
  *
+ *     - In all three traversal algorithms, the time complexity is O(n) because
+ *       each node is visited exactly once. The space complexity is O(h) because
+ *       the maximum number of recursive function calls on the call stack is determined
+ *       by the height of the tree.
+ *
+ *     - Time -> O(n) where n is the number of nodes in the tree that have to be visited
+ *     - Space -> O(h) where h is the height of the tree
+ *
  */
 
 /**
