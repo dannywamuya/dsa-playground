@@ -156,10 +156,9 @@ function bfs(root) {
 
 function preOrder(root) {
   if (root === null) return;
-  let right = root.right;
   console.log(root.val);
   preOrder(root.left);
-  preOrder(right);
+  preOrder(root.right);
 }
 
 /**
@@ -175,6 +174,19 @@ function inOrder(root) {
   inOrder(root.right);
 }
 
+/**
+ * Post-Order (<left><right><root>)
+ *
+ * @param {TreeNode} root
+ */
+
+function postOrder(root) {
+  if (root === null) return;
+  postOrder(root.left);
+  postOrder(root.right);
+  console.log(root.val);
+}
+
 // console.log(tree);
 // console.log(findMin(tree));
 // console.log(findMax(tree));
@@ -183,4 +195,5 @@ function inOrder(root) {
 // console.log(height(tree));
 // bfs(tree);
 // preOrder(tree);
-inOrder(tree);
+// inOrder(tree);
+postOrder(tree);
