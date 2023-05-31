@@ -203,20 +203,19 @@ function postOrder(root) {
  * @returns {boolean}
  */
 function isBST(root) {
-  let nodes = [];
+  let lastNode = null;
 
   function inOrderTravesal(node) {
     if (node === null) return;
 
     inOrderTravesal(node.left);
 
-    let len = nodes.length;
     let curr = node.val;
 
-    if (nodes[len - 1] > curr) {
+    if (lastNode && lastNode > curr) {
       return false;
     } else {
-      nodes.push(curr);
+      lastNode = curr;
     }
 
     inOrderTravesal(node.right);
