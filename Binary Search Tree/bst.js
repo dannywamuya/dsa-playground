@@ -207,23 +207,24 @@ function isBST(root) {
 
   function inOrderTravesal(node) {
     if (node === null) return;
+
     inOrderTravesal(node.left);
-    nodes.push(node.val);
-    inOrderTravesal(node.right);
-  }
 
-  inOrderTravesal(root);
+    let len = nodes.length;
+    let curr = node.val;
 
-  let isValid = true;
-
-  for (let i = 0; i < nodes.length - 1; i++) {
-    if (nodes[i] > nodes[i + 1]) {
-      isValid = false;
-      break;
+    if (nodes[len - 1] > curr) {
+      return false;
+    } else {
+      nodes.push(curr);
     }
+
+    inOrderTravesal(node.right);
+
+    return true;
   }
 
-  return isValid;
+  return inOrderTravesal(root);
 }
 
 const invalidTree = {
@@ -264,6 +265,44 @@ const invalidTree = {
   },
 };
 
+const tree2 = {
+  val: 10,
+  left: {
+    val: 5,
+    left: {
+      val: 3,
+      left: null,
+      right: null,
+    },
+    right: {
+      val: 8,
+      left: {
+        val: 6,
+        left: null,
+        right: null,
+      },
+      right: null,
+    },
+  },
+  right: {
+    val: 15,
+    left: null,
+    right: {
+      val: 18,
+      left: {
+        val: 16,
+        left: null,
+        right: null,
+      },
+      right: {
+        val: 20,
+        left: null,
+        right: null,
+      },
+    },
+  },
+};
+
 // console.log(tree);
 // console.log(findMin(tree));
 // console.log(findMax(tree));
@@ -276,3 +315,4 @@ const invalidTree = {
 // postOrder(tree);
 console.log(isBST(tree));
 console.log(isBST(invalidTree));
+console.log(isBST(tree2));
