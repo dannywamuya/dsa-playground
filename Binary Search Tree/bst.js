@@ -59,7 +59,7 @@ function findMin(root) {
     curr = curr.left;
   }
 
-  return curr.val;
+  return curr;
 }
 
 /**
@@ -75,7 +75,7 @@ function findMax(root) {
     curr = curr.right;
   }
 
-  return curr.val;
+  return curr;
 }
 
 /**
@@ -226,6 +226,32 @@ function isBST(root) {
   return inOrderTravesal(root);
 }
 
+/**
+ * Delete a node from a BST
+ *
+ * @param {TreeNode} root
+ * @param {number} data
+ */
+function deleteNode(root, data) {
+  if (root === null) return null;
+  else if (data < root.val) root.left = deleteNode(root.left, data);
+  else if (data > root.val) root.right = deleteNode(root.right, data);
+  else {
+    if (root.left === null && root.right === null) {
+      root = null;
+    } else if (root.left === null && root.right) {
+      root = root.right;
+    } else if (root.right === null && root.left) {
+      root = root.left;
+    } else {
+      let min = findMin(root.right);
+      root.val = min.val;
+      root.right = deleteNode(root.right, min);
+    }
+  }
+  return root;
+}
+
 const invalidTree = {
   val: 12,
   left: {
@@ -312,6 +338,11 @@ const tree2 = {
 // preOrder(tree);
 // inOrder(tree);
 // postOrder(tree);
-console.log(isBST(tree));
-console.log(isBST(invalidTree));
-console.log(isBST(tree2));
+// console.log(isBST(tree));
+// console.log(isBST(invalidTree));
+// console.log(isBST(tree2));
+console.log("Before");
+inOrder(tree2);
+deleteNode(tree2, 10);
+console.log("After");
+inOrder(tree2);
