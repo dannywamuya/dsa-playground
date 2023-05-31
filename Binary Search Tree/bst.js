@@ -195,6 +195,75 @@ function postOrder(root) {
   console.log(root.val);
 }
 
+/**
+ * Check if a binary tree is a BST
+ *
+ *
+ * @param {TreeNode} root
+ * @returns {boolean}
+ */
+function isBST(root) {
+  let nodes = [];
+
+  function inOrderTravesal(node) {
+    if (node === null) return;
+    inOrderTravesal(node.left);
+    nodes.push(node.val);
+    inOrderTravesal(node.right);
+  }
+
+  inOrderTravesal(root);
+
+  let isValid = true;
+
+  for (let i = 0; i < nodes.length - 1; i++) {
+    if (nodes[i] > nodes[i + 1]) {
+      isValid = false;
+      break;
+    }
+  }
+
+  return isValid;
+}
+
+const invalidTree = {
+  val: 12,
+  left: {
+    val: 42,
+    left: null,
+    right: {
+      val: 35,
+      left: null,
+      right: null,
+    },
+  },
+  right: {
+    val: 3,
+    left: {
+      val: 6,
+      left: {
+        val: 7,
+        left: null,
+        right: null,
+      },
+      right: {
+        val: 4,
+        left: null,
+        right: null,
+      },
+    },
+    right: {
+      val: 2,
+      left: null,
+      right: {
+        val: 1,
+        left: null,
+        right: null,
+      },
+    },
+  },
+};
+
 // console.log(tree);
 // console.log(findMin(tree));
 // console.log(findMax(tree));
@@ -204,4 +273,6 @@ function postOrder(root) {
 // bfs(tree);
 // preOrder(tree);
 // inOrder(tree);
-postOrder(tree);
+// postOrder(tree);
+console.log(isBST(tree));
+console.log(isBST(invalidTree));
