@@ -267,6 +267,23 @@ var kthSmallest = function (root, k) {
   return arr[k - 1];
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function (root) {
+  if (!root) return null;
+
+  let temp = root.left;
+  root.left = root.right;
+  root.right = temp;
+
+  invertTree(root.left);
+  invertTree(root.right);
+
+  return root;
+};
+
 const invalidTree = {
   val: 12,
   left: {
@@ -363,4 +380,5 @@ const tree2 = {
 // inOrder(tree2);
 // console.log(isBST(buildTree([5, 1, 4, null, null, 3, 6])));
 // console.log(isBST(buildTree([2, 1, 3])));
-console.log(kthSmallest(buildTree([5, 1, 4, 3, 6]), 2));
+// console.log(kthSmallest(buildTree([5, 1, 4, 3, 6]), 2));
+console.log(invertTree(buildTree([4, 2, 7, 1, 3, 6, 9])));
