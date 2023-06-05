@@ -248,6 +248,25 @@ function deleteNode(root, data) {
   return root;
 }
 
+/**
+ * @param {TreeNode} root
+ * @param {number} k
+ * @return {number}
+ */
+var kthSmallest = function (root, k) {
+  let arr = [];
+  function inOrder(node) {
+    if (node === null) return;
+    if (arr.length >= k) return;
+    inOrder(node.left);
+    arr.push(node.val);
+    inOrder(node.right);
+  }
+  inOrder(root);
+
+  return arr[k - 1];
+};
+
 const invalidTree = {
   val: 12,
   left: {
@@ -342,5 +361,6 @@ const tree2 = {
 // deleteNode(tree2, 10);
 // console.log("After");
 // inOrder(tree2);
-console.log(isBST(buildTree([5, 1, 4, null, null, 3, 6])));
-console.log(isBST(buildTree([2, 1, 3])));
+// console.log(isBST(buildTree([5, 1, 4, null, null, 3, 6])));
+// console.log(isBST(buildTree([2, 1, 3])));
+console.log(kthSmallest(buildTree([5, 1, 4, 3, 6]), 2));
