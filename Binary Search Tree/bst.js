@@ -10,9 +10,9 @@ class TreeNode {
   }
 }
 
-let tree = null;
-
 const arr = [12, 3, 2, 42, 1, 6, 35, 7, 4];
+
+let tree = buildTree(arr);
 
 /**
  * Create a Binary Search Tree Node
@@ -42,8 +42,12 @@ function insertNode(root, data) {
   return root;
 }
 
-for (let i = 0; i < arr.length; i++) {
-  tree = insertNode(tree, arr[i]);
+function buildTree(data) {
+  let tre = null;
+  for (let i = 0; i < arr.length; i++) {
+    tre = insertNode(tre, data[i]);
+  }
+  return tre;
 }
 
 /**
@@ -203,27 +207,19 @@ function postOrder(root) {
  * @returns {boolean}
  */
 function isBST(root) {
-  let lastNode = null;
+  function isValid(node, min, max) {
+    if (node === null) return true;
 
-  function inOrderTravesal(node) {
-    if (node === null) return;
-
-    inOrderTravesal(node.left);
-
-    let curr = node.val;
-
-    if (lastNode && lastNode > curr) {
+    if (node.val <= min || node.val >= max) {
       return false;
-    } else {
-      lastNode = curr;
     }
 
-    inOrderTravesal(node.right);
-
-    return true;
+    return (
+      isValid(node.left, min, node.val) && isValid(node.right, node.val, max)
+    );
   }
 
-  return inOrderTravesal(root);
+  return isValid(root);
 }
 
 /**
@@ -341,8 +337,10 @@ const tree2 = {
 // console.log(isBST(tree));
 // console.log(isBST(invalidTree));
 // console.log(isBST(tree2));
-console.log("Before");
-inOrder(tree2);
-deleteNode(tree2, 10);
-console.log("After");
-inOrder(tree2);
+// console.log("Before");
+// inOrder(tree2);
+// deleteNode(tree2, 10);
+// console.log("After");
+// inOrder(tree2);
+console.log(isBST(buildTree([5, 1, 4, null, null, 3, 6])));
+console.log(isBST(buildTree([2, 1, 3])));
